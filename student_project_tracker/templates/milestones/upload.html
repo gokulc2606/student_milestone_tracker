@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Milestone Uploads</h4>
+                <span class="badge bg-secondary">{{ project.domain }}</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ project.title }}</h5>
+                <p class="text-muted small">Guide: {{ project.guide.username|default:"Unassigned" }}</p>
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    
+                    <div class="table-responsive mt-4">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Stage</th>
+                                    <th>Upload File</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for field in form %}
+                                <tr>
+                                    <td class="text-capitalize">{{ field.label }}</td>
+                                    <td>
+                                        {{ field }}
+                                        {{ field.errors }}
+                                    </td>
+                                    <td>
+                                        {% if field.value %}
+                                            <span class="text-success me-2">✅ Uploaded</span>
+                                            <a href="{{ field.value.url }}" target="_blank" class="btn btn-sm btn-outline-primary">View File</a>
+                                        {% else %}
+                                            <span class="text-danger">❌ Pending</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button type="submit" class="btn btn-success mt-3 w-100">Save Milestones</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

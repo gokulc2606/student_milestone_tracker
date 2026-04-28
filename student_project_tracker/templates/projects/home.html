@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Student Project & Milestone Tracker</h1>
+        <p class="lead mb-5">Centralized platform for tracking capstone projects, uploading milestones, and exporting reports.</p>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow-sm h-100 border-primary">
+                    <div class="card-body py-5">
+                        <h3 class="card-title mb-3">🎓 For Students</h3>
+                        <p class="card-text text-muted mb-4">Register your new capstone project and begin tracking your milestones.</p>
+                        <a href="{% url 'register_project' %}" class="btn btn-primary btn-lg w-100">Register Project</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="card shadow-sm h-100 border-success">
+                    <div class="card-body py-5">
+                        <h3 class="card-title mb-3">👨‍🏫 For Faculty</h3>
+                        <p class="card-text text-muted mb-4">View your assigned teams, track progress, and export reports.</p>
+                        <a href="{% url 'dashboard' %}" class="btn btn-success btn-lg w-100">Guide Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-5">
+            <a href="/admin/" class="btn btn-outline-secondary">⚙️ System Administration</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
